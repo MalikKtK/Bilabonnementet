@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>dataregistrering</title>
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/dataregistration1.css">
+
+
+
+</head>
+
+<body>
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/opret-lejekontrakt">Opret lejekontrakt</a></li>
+                <li><a href="/lejekontrakter">Se alle lejeaftaler</a></li>
+                <li><a href="/biler"> Se alle biler</a></li>
+                <li><a href="/opret-bil">Tilføj ny bil</a> </li>
+                <li><a href="/logout">Log ud</a></li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="social-buttons">
+    <a th:href="@{/opret-lejekontrakt}">
+<button class="neo-button" type="submit">Opert lejekontrakt <i class="fa"></i> </button>
+    </a>
+
+    <a th:href="@{/lejekontrakter}">
+    <button class="neo-button" type="submit">Se alle lejekontrakter <i class="fa"></i> </button>
+    </a>
+
+    <a th:href="@{/biler}">
+        <button class="neo-button" type="submit">Se alle biler <i class="fa"></i> </button>
+    </a>
+
+    <a th:href="@{/opret-bil}">
+        <button class="neo-button" type="submit">Opret ny bil <i class="fa"></i> </button>
+    </a>
+</div>
+
+
+</body>
+
+</html>

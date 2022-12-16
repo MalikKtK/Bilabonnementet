@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Brugere</title>
+    <link rel="stylesheet" href="/all-users.css">
+    <link rel="stylesheet" href="/navbar.css">
+</head>
+
+<body>
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/brugere">Se alle brugere</a></li>
+                <li><a href="/opret-bruger">Tilføj ny bruger</a></li>
+                <li><a href="/logout">Log ud</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper">
+    <div class="content-under-header" id="all_buttons_in_body_createuser">
+<div class="content-under-header">
+    <div th:if="${listOfUsers.size() == 0}">
+        <h2>Der er ikke nogle bruger</h2>
+    </div>
+    <div>
+        <div class="text-center mt-4 name">
+            Se alle oprettede brugere
+        </div>
+
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <br>
+
+        <table class="tabletester">
+                <thead>
+            <tr>
+                <th scope="col" class="table-secondary"> Brugernavn </th>
+                <th scope="col" class="table-secondary"> Rolle </th>
+                <th scope="col" class="table-secondary"> Link </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:if="${listOfUsers.empty}">
+                <td colspan="4"> Der er ingen brugere i systemet</td>
+            </tr>
+
+            <tr th:each="user : ${listOfUsers}">
+                <td ><span th:text="${user.username}"> brugernavn </span></td>
+
+                <td >
+                    <span th:if="${user.role.toString() == 'DATA_REGISTRATION'}" th:text="'Dataregistrering'"></span>
+                    <span th:if="${user.role.toString() == 'DAMAGE_AND_RECTIFICATION'}" th:text="'Skade og udbedring'"></span>
+                    <span th:if="${user.role.toString() == 'BUSINESS_DEVELOPER'}" th:text="'Forretningsudvikler'"></span>
+                    <span th:if="${user.role.toString() == 'ADMINISTRATOR'}" th:text="'Administrator'"></span>
+                </td>
+
+                <td>
+                    <a th:href="@{/bruger/{userId}(userId=${user.id})}">
+                        <button class="btn btn-secondary">Rediger</button>
+                    </a>
+                </td>
+
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
+

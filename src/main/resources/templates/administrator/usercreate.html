@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Tilføj Bruger</title>
+    <link rel="stylesheet" th:href="@{create-user.css}">
+    <link rel="stylesheet" href="/create-user.css">
+    <link rel="stylesheet" href="/navbar.css">
+</head>
+
+<body>
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/brugere">Se alle brugere</a></li>
+                <li><a href="/opret-bruger">Tilføj ny bruger</a></li>
+                <li><a href="/logout">Log ud</a></li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper">
+<div class="content-under-header" id="all_buttons_in_body_createuser">
+    <form action="#" th:action="@{/opret-bruger}" th:object="${user}" method="post">
+
+        <div class="text-center mt-4 name">
+            Tilføj en bruger
+        </div> <br>
+        <form class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                 <br>
+            <input type="text" placeholder="Brugernavn" th:field="*{username}" required> <br><br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+           <br>
+            <input type="password" placeholder="Adgangskode" th:field="*{password}" required> <br> <br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span><br>
+                <select th:field="*{roleID}">
+                    <option th:value="0" th:text="'Dataregistrering'"></option>
+                    <option th:value="1" th:text="'Skade og Udbedring'"></option>
+                    <option th:value="2" th:text="'Forretningsudvikler'"></option>
+                    <option th:value="3" th:text="'Administrator'"></option>
+                </select>
+            </label> <br><br>
+            </div>
+
+                <div class="form-field d-flex align-items-center">
+                    <span class="fas fa-key"></span> <br>
+
+
+                <select th:field="*{locationId}">
+                    <option th:each="location : ${locations}" th:value="${location.id}"
+                            th:text="${location.name}"></option>
+                </select>
+            </label> <br> <br> </div>
+
+            <button class="btn btn-secondary" type="submit">Tilføj bruger</button>
+
+    </form>
+    </form></div></div>
+
+
+</body>
+
+</html>

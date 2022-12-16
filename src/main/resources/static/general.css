@@ -1,0 +1,61 @@
+/* @Made by Mark & Ebubekir */
+
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.no-margin-padding{
+    margin: 0;
+    padding: 0;
+}
+
+.header-button{
+    width: 100%;
+}
+
+.content-under-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #f2f2f2;
+    margin: auto;
+    height: 80vh;
+}
+
+
+.button-style-home{
+    background-color: #f2f2f2;
+    color: black;
+    cursor: pointer;
+    width: 100%;
+    button:hover;
+    font-size: 45px;
+    border-radius: 5px;
+
+}
+
+.no-entities-in-list{
+    font-size: small;
+    color: red
+}
+
+
+
+button:hover {
+    opacity: 0.8;
+}
+
+.font-small{
+    font-size: small;
+}
+
+.center_things{
+    display: flex;
+    justify-content: center;
+}
+
+

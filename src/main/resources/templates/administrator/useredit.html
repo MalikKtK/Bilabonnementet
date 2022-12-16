@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title th:text="${user.getUsername() + ' - Rediger'}">Tilføj bruger</title>
+
+    <link rel="stylesheet" href="/create-user.css">
+    <link rel="stylesheet" href="/navbar.css">
+</head>
+
+<body>
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/brugere">Se alle brugere</a></li>
+                <li><a href="/opret-bruger">Tilføj ny bruger</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+    <div class="wrapper">
+        <div class="content-under-header" id="all_buttons_in_body_createuser">
+    <form action="#" th:action="@{/bruger/{userId}(userId=${user.id})}" th:object="${user}" method="post">
+
+        <div class="text-center mt-4 name">
+            Rediger en bruger
+        </div> <br>
+
+
+        <form class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <br>
+                <p>Brugernavn:</p>
+                <label>
+                    <input class="col-6" type="text" th:placeholder="${user.username}" th:field="*{username}" required>
+                </label>
+            </div>
+
+
+                <div class="form-field d-flex align-items-center">
+                    <span class="fas fa-key"></span><br>
+                <label class="col-6"><p>Ny adgangskode:</p></label> <br>
+                <input class="col-6" type="password" placeholder="Indtast adgangskode" th:field="*{password}">
+                </div>
+
+                <div class="form-field d-flex align-items-center">
+                    <span class="fas fa-key"></span><br>
+               <p>Rolle: </p> <br>
+                    <select th:field="*{roleID}">
+                        <option th:each="role : ${roles}" th:value="${role.value}" th:text="${role.name}"
+                                th:selected="${user.roleID == role.value}"></option>
+                    </select>
+                 <br><br>
+                </div>
+
+
+                <div class="form-field d-flex align-items-center">
+                    <span class="fas fa-key"></span><br>
+                 <p>Lokation:</p> <br>
+                    <select th:field="*{locationId}">
+                        <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"
+                                th:selected="${user.locationId == location.id}"></option>
+                    </select>
+               <br><br>
+                </div> </form> </form>
+            </div>
+
+
+            <div class="row m-2">
+                <div class="col-12">
+                     <button class="btn btn-secondary w-50" type="submit">Rediger bruger</button>
+                </div>
+            </div>
+
+
+    <div class="row m-2">
+        <div class="col-12">
+            <a th:href="@{/bruger/{userId}/slet(userId=${user.id})}"> <br>
+                <button class="btn btn-secondary w-100">Slet</button>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

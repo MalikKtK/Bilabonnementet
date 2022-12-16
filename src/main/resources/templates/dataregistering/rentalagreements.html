@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Lejekontrakter</title>
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/all-users.css">
+
+
+</head>
+<body>
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/opret-lejekontrakt">Opret lejekontrakt</a></li>
+                <li><a href="/lejekontrakter">Se alle lejeaftaler</a></li>
+                <li><a href="/biler"> Se alle biler</a></li>
+                <li><a href="/opret-bil">Tilføj ny bil</a> </li>
+                <li><a href="/logout">Log ud</a></li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper">
+    <div class="content-under-header" id="all_buttons_in_body_createuser">
+        <div class="content-under-header">
+
+            <div class="text-center mt-4 name">
+                Se alle lejekontrakter
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <br>
+
+                <table class="tabletester">
+            <thead>
+
+            <tr>
+                <th scope="col" class="table-secondary"> ID </th>
+                <th scope="col" class="table-secondary"> Bil </th>
+                <th scope="col" class="table-secondary"> StartDato </th>
+                <th scope="col" class="table-secondary"> SlutDato </th>
+                <th scope="col" class="table-secondary"> Type </th>
+                <th scope="col" class="table-secondary"> Link </th>
+            </tr>
+            </thead>
+                </table>
+
+            <tbody>
+            <tr th:if="${listOfRentalAgreement.empty}">
+                <td colspan="5"> Der er ingen lejekontrakter i systemet </td>
+            </tr>
+            <tr th:each="RA : ${listOfRentalAgreement}">
+                <td><span th:text="${RA.id}"> ID </span></td>
+                <td><span th:text="${RA.car.id + ' - ' + RA.car.make + ' ' + RA.car.model}" > Bil </span></td>
+                <td><span th:text="${RA.startDate.toString()}" > Startdato </span></td>
+                <td><span th:text="${RA.endDate.toString()}" > Slutdato </span></td>
+                <td><span th:text="${RA.type}" > Type </span></td>
+                <td>
+                    <a th:href="@{/lejekontrakt/{RAId}(RAId=${RA.id})}">
+                        <button class="btn btn-secondary">Rediger</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

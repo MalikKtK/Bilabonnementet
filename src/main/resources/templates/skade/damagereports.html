@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Alle skadesrapporter</title>
+
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/all-users.css">
+
+</head>
+
+<body>
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/opret-skadesrapport">Tilføj skaderapport</a></li>
+                <li><a href="/skadesrapporter">Se alle skaderapporter</a></li>
+                <li><a href="/biler"> Se alle biler</a></li>
+                <li><a href="/logout">Log ud</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="wrapper">
+    <div class="content-under-header" id="all_buttons_in_body_createuser">
+        <div class="content-under-header">
+
+            <div class="text-center mt-4 name">
+                Se alle skaderapporter
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <br>
+
+
+                <table class="tabletester">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th scope="col" class="table-secondary"> Bil </th>
+                <th scope="col" class="table-secondary"> Skadesrapport id</th>
+                <th scope="col" class="table-secondary"> Bemærkninger</th>
+                <th scope="col" class="table-secondary"> Medarbejder </th>
+                <th scope="col" class="table-secondary"> Link </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${listOfDamageReports.empty}">
+                <td colspan="4"> Der er ingen skadesrapporter i systemet</td>
+            </tr>
+            <tr th:each="damageReport : ${listOfDamageReports}">
+                <td><span th:text="${damageReport.carId}"></span></td>
+                <td><span th:text="${damageReport.id}"> Skadesrapport id </span></td>
+                <td><span th:text="${damageReport.notes}"> Bemærkninger </span></td>
+                <td><span th:text="${damageReport.technicianId + ' - ' + damageReport.technicianName}"> Bruger id </span></td>
+                <td>
+                    <a th:href="@{/skadesrapport/{damageReportId}(damageReportId=${damageReport.id})}">
+                        <button class="btn btn-secondary">Rediger</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

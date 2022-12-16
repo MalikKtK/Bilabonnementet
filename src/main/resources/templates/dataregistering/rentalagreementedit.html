@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>rediger lejekontrakt</title>
+    <link rel="stylesheet" href="/create-user.css">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/dataregistration2.css">
+
+</head>
+<body>
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/opret-lejekontrakt">Opret lejekontrakt</a></li>
+                <li><a href="/lejekontrakter">Se alle lejeaftaler</a></li>
+                <li><a href="/biler"> Se alle biler</a></li>
+                <li><a href="/opret-bil">Tilføj ny bil</a> </li>
+                <li><a href="/logout">Log ud</a></li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<div class="wrapper">
+    <div class="content-under-header" id="all_buttons_in_body_createuser">
+        <div class="content-under-header">
+
+            <div class="text-center mt-4 name">
+                Redigere lejekontrakt
+            </div>
+            <br>
+    <form action="#" th:action="@{/lejekontrakt/{raId}(raId = ${RA.id})}" th:object="${RA}" method="post" enctype="multipart/form-data">
+
+
+            <div class="row m-3">
+                <label class="col-6"><b>Vælg bil:*</b> <br>
+                    <select th:field="*{carId}">
+                        <option th:value="${RA.car.id}" th:text="${RA.car.id + ' - ' + RA.car.make + ' ' + RA.car.model}"></option>
+                        <option th:each="car : ${cars}" th:value="${car.id}"
+                                th:text="${car.id + ' - ' + car.make + ' ' + car.model}"></option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="row m-3">
+                <label class="col-6"><b>Type:*</b> <br>
+                    <select id="type" th:field="*{typeId}" onchange="updateDateInputs()">
+                        <option th:each="type : ${types}" th:value="${type.value}" th:text="${type.name}"
+                                th:selected="${RA.typeId == type.value}"></option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="row m-3">
+                <label class="col-6"><b>Start Dato:*</b></label> <br>
+                    <input class="col-6" id="start_date" type="date" value="" th:field="*{startDateString}" required onchange="updateDateInputs()">
+                    <!--<br><br>-->
+            </div>
+
+            <div class="row m-3">
+                <label class="col-6"><b>Slut Dato:*</b></label> <br>
+                    <span th:if="${noCar}" class="no-entities-in-list">Slut dato er før start dato <br></span>
+                <input class="col-6" id="end_date" type="date" th:value="${{RA.endDate.toString()}}" th:field="*{endDateString}" required onchange="updateDateInputs()">
+                    <!--<br> <br>-->
+            </div>
+
+            <div class="row m-3">
+                <label class="col-6"><b>Månedlig pris:*</b></label> <br>
+                <input class="col-6" type="text" placeholder="0" th:field="*{price}" required>
+                <!--<br><br>-->
+            </div>
+        <br>
+
+            <div class="row m-3">
+                <div class="col-6">
+                    <button class="btn btn-secondary" type="submit">Ret lejekontrakt</button>
+                </div>
+            </div>
+    </form>
+            <br>
+
+
+        <div class="col-6">
+            <a th:href="@{/lejekontrakt/{raId}/slet(raId = ${RA.id})}">
+                <button class="btn btn-secondary w-100">Slet lejekontrakt</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    let startDateString = /*[[${{RA.startDate.toString()}}]]*/ '2020-01-01';
+    let endDateString = /*[[${{RA.endDate.toString()}}]]*/ '2020-01-01';
+
+    let startDate = new Date(startDateString);
+    let endDate = new Date(endDateString);
+
+    // getting elements
+    const startDate_input = document.getElementById('start_date');
+    const endDate_input = document.getElementById('end_date');
+    const type = document.getElementById('type');
+
+    // setting starting values
+    startDate_input.value = startDateString;
+    endDate_input.value = endDateString;
+
+    function updateDateInputs() {
+        startDate = new Date(startDate_input.value);
+        endDate = new Date(endDate_input.value);
+
+        let t = type.value;
+        if (0 >= t) {
+            //change to limited
+            endDate = addToMonth(5);
+
+            endDateString = formatDate(endDate);
+
+            endDate_input.min = endDateString;
+            endDate_input.value = endDateString;
+            endDate_input.max = endDateString;
+        } else {
+            // change to unlimited
+            let lowerLimit = addToMonth(3);
+            let upperLimit = addToMonth(36);
+
+            console.log(lowerLimit);
+            console.log(upperLimit);
+
+            endDate_input.min = formatDate(lowerLimit);
+            endDate_input.max = formatDate(upperLimit);
+
+            if (lowerLimit.valueOf() > endDate.valueOf()) {
+                console.log("lower than limit");
+                endDate_input.value = formatDate(lowerLimit);
+            } else if (upperLimit.valueOf() < endDate.valueOf()) {
+                console.log("higher than limit");
+                endDate_input.value = formatDate(upperLimit);
+            }
+        }
+    }
+
+    // returns a new date, based on startDate plus the amount of mounts
+    function addToMonth(amount) {
+        let date = new Date(startDate);
+        date.setMonth(date.getMonth() + amount);
+        return date;
+    }
+
+    // 👇️👇️👇️ Format Date as yyyy-mm-dd
+    // 👇️ (Helper functions) - borrowed and modified from https://bobbyhadz.com/blog/javascript-set-values-input-date-time
+    function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+    }
+
+    function formatDate(date) {
+        return (
+            [
+                date.getFullYear(),
+                padTo2Digits(date.getMonth() + 1),
+                padTo2Digits(date.getDate()),
+            ].join('-')
+        );
+    }
+
+
+</script>
+
+</body>
+</html>

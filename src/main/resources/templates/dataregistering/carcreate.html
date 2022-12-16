@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Tilføj bil</title>
+    <link rel="stylesheet" href="/create-user.css">
+    <link rel="stylesheet" href="/navbar.css">
+
+</head>
+<body>
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/opret-lejekontrakt">Opret lejekontrakt</a></li>
+                <li><a href="/lejekontrakter">Se alle lejeaftaler</a></li>
+                <li><a href="/biler"> Se alle biler</a></li>
+                <li><a href="/opret-bil">Tilføj ny bil</a> </li>
+                <li><a href="/logout">Log ud</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+     <div class="wrapper">
+         <div class="content-under-header" id="all_buttons_in_body_createuser">
+         <form action="#" th:action="@{/opret-bil}" th:object="${car}" method="post">
+             <div class="text-center mt-4 name">
+                 Tilføj en bil
+             </div> <br>
+             <form class="p-3 mt-3">
+                 <div class="form-field d-flex align-items-center">
+                     <span class="far fa-user"></span>
+                     <br>
+
+             <div class="row m-2">
+                 <label class="col-6"><b>Vognnummer:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Vognnummer" th:field="*{carNumber}" required> <br><br>
+             </div>
+                 </div>
+
+                 <form class="p-3 mt-3">
+                     <div class="form-field d-flex align-items-center">
+                         <span class="far fa-user"></span>
+                         <br>
+
+             <div class="row m-2">
+                 <label class="col-6"><b>Mærke:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Mærke" th:field="*{make}" required> <br><br>
+             </div>
+                     </div>
+
+                     <form class="p-3 mt-3">
+                         <div class="form-field d-flex align-items-center">
+                             <span class="far fa-user"></span>
+                             <br>
+
+             <div class="row m-2">
+                 <label class="col-6"><b>Model:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Model" th:field="*{model}" required> <br><br>
+             </div>
+                         </div>
+
+                         <form class="p-3 mt-3">
+                             <div class="form-field d-flex align-items-center">
+                                 <span class="far fa-user"></span>
+                                 <br>
+             <div class="row m-2">
+                 <label class="col-6"><b>købspris:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="" th:field="*{carPrice}" required> <br><br>
+             </div>
+                             </div>
+                             <form class="p-3 mt-3">
+                                 <div class="form-field d-flex align-items-center">
+                                     <span class="far fa-user"></span>
+                                     <br>
+
+             <div class="row m-2">
+                 <label class="col-6"><b>Registreringsafgift:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="" th:field="*{registrationFee}" required> <br><br>
+             </div>
+                                 </div>
+
+                                 <form class="p-3 mt-3">
+                                     <div class="form-field d-flex align-items-center">
+                                         <span class="far fa-user"></span>
+                                         <br>
+
+             <div class="row m-2">
+                 <label class="col-6"><b>Co2 udledning:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="" th:field="*{co2Emission}" required> <br><br>
+             </div></div>
+                                     <form class="p-3 mt-3">
+                                         <div class="form-field d-flex align-items-center">
+                                             <span class="far fa-user"></span>
+                                             <br>
+
+             <div class="row m-2">
+                 <label class="col-6"><b>Kørte kilometer:</b></label> <br>
+                 <input class="col-6" type="text" placeholder="" th:field="*{kilometersDriven}"> <br><br>
+             </div>
+                                         </div>
+                                         <form class="p-3 mt-3">
+                                             <div class="form-field d-flex align-items-center">
+                                                 <span class="far fa-user"></span>
+                                                 <br>
+
+             <div class="row m-2">
+                 <label class="col-6"><b>Noter:</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Noter" th:field="*{damage}"> <br><br>
+             </div>
+                                             </div>
+                                             <form class="p-3 mt-3">
+                                                 <div class="form-field d-flex align-items-center">
+                                                     <span class="far fa-user"></span>
+                                                     <br>
+
+             <div class="row m-2">
+                 <label class="col-6"><b>Farve:</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Farve" th:field="*{colour}" required> <br><br>
+             </div>
+                                                 </div>
+
+                                                 <form class="p-3 mt-3">
+                                                     <div class="form-field d-flex align-items-center">
+                                                         <span class="far fa-user"></span>
+                                                         <br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Brændstofstype:</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Brændstofstype" th:field="*{fuelType}" required> <br><br>
+             </div>
+                                                     </div>
+                                                     <form class="p-3 mt-3">
+                                                         <div class="form-field d-flex align-items-center">
+                                                             <span class="far fa-user"></span>
+                                                             <br>
+
+             <div class="row m-2">
+                 <label class="col-6"><b>Lokation:</b> <br>
+                     <select th:field="*{locationId}">
+                         <option th:each="location : ${locations}" th:value="${location.id}"
+                                 th:text="${location.name}"></option>
+                     </select>
+                 </label> <br> <br>
+             </div> </div>
+
+             <div class="row m-2">
+                 <div class="col-6">
+                    <button class="btn btn-secondary" type="submit">Tilføj bil</button>
+                 </div>
+             </div>
+         </form>
+ </div>
+
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Data for biler</title>
+    <link rel="stylesheet" href="/all-users.css">
+    <link rel="stylesheet" href="/navbar.css">
+
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/biler">Se alle biler</a></li>
+                <li><a href="/biler/data">Se data over biler</a></li>
+                <li><a href="/logout">Log ud</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<div class="wrapper">
+    <div class="content-under-header" id="all_buttons_in_body_createuser">
+        <div class="content-under-header">
+            <h1>Data for biler:</h1>
+
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <br>
+                <table class="tabletester">
+                    <thead>
+                    <th scope="col" class="table-secondary1">Total antal udlejede biler</th>
+                    <th scope="col" class="table-secondary1">Totalpris for udlejde biler</th>
+                    </thead>
+
+                    <tbody>
+                    <tr th:if="${listOfRentedCars.empty}">
+                        <td colspan="5"> Der er ingen biler i systemet</td>
+                    </tr>
+                    <tr>
+                        <td ><span th:text="${numberOfRentedCars}"> Antal Udlejde biler </span></td>
+                        <td ><span th:text="${totalPriceOfRentedCars}"> Totalpris udlejede biler </span></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="tabletester">
+                    <thead>
+                    <th scope="col" class="table-secondary">Vognnummer</th>
+                    <th scope="col" class="table-secondary">Købspris</th>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${listOfRentedCars.empty}">
+                        <td colspan="5"> Der er ingen biler i systemet</td>
+                    </tr>
+                    <tr  th:each="car : ${listOfRentedCars}">
+                        <td ><span th:text="${car.id}"> Vognnummer </span></td>
+                        <td ><span th:text="${car.carPrice}"> Købspris </span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> </div> </div>
+
+
+</body>
+</body>
+</html>

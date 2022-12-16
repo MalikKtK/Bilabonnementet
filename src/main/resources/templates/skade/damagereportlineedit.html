@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Tilføj skadesrapport</title>
+    <link rel="stylesheet" href="/create-user.css">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/dataregistration2.css">
+</head>
+
+<body>
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/opret-skade/">Tilføj skade</a></li>
+                <li><a href="/skadesrapporter">Se alle skaderapporter</a></li>
+                <li><a href="/biler"> Se alle biler</a></li>
+                <li><a href="/logout">Log ud</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper">
+    <div class="content-under-header" id="all_buttons_in_body_createuser">
+        <div class="content-under-header">
+
+            <div class="text-center mt-4 name">
+                Redigere skaderapport
+            </div>
+            <br>
+
+
+
+<div class="content-under-header" id="all_buttons_in_body_createuser">
+    <form action="#" th:action="@{/skadesrapport/{damageReportId}/{lineNumber}(lineNumber = ${damageReportLine.lineNumber}, damageReportId = ${damageReportLine.damageReportId})}"
+          th:object="${damageReportLine}" method="post">
+
+        <div>
+
+            <label><b>Note:*</b></label> <br>
+            <input type="text" placeholder="Note" th:field="*{damageNotes}" required> <br> <br>
+
+            <label><b>Pris:*</b></label> <br>
+            <input type="text" placeholder="Pris" th:field="*{price}" required> <br><br>
+
+            <a>
+                <button class="btn btn-secondary" type="submit">Ret skade</button>
+            </a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

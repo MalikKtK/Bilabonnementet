@@ -1,0 +1,17 @@
+/* @Made by Mark & Ebubekir */
+
+.landingpageHeader{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5px;
+}
+
+#img_style{
+    width: 100%
+}
+
+.site-container{
+    max-width: 70%;
+    margin: auto;
+
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Tilføj skadesrapport</title>
+
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/create-user.css">
+
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/opret-skadesrapport">Tilføj skaderapport</a></li>
+                <li><a href="/skadesrapporter">Se alle skaderapporter</a></li>
+                <li><a href="/biler"> Se alle biler</a></li>
+                <li><a href="/logout">Log ud</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<div class="wrapper">
+    <div class="content-under-header" id="all_buttons_in_body_createuser">
+    <form action="#" th:action="@{/opret-skadesrapport}" th:object="${damageReport}" method="post">
+        <div class="text-center mt-4 name">
+            Opret skade rapport
+        </div> <br>
+        <form class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <br>
+        <div>
+            <label><b>Vælg bil:*</b> <br>
+                <span th:if="${noCar}" class="no-entities-in-list">Vælg en bil! <br></span>
+                <select th:field="*{carId}">
+                    <option value="-1">Vælg bil</option>
+                    <option th:each="car : ${cars}" th:value="${car.id}"
+                            th:text="${car.id + ' - ' + car.make + ' ' + car.model}"></option>
+                </select>
+            </label> <br> <br>
+        </div> </div>
+                <form class="p-3 mt-3">
+                    <div class="form-field d-flex align-items-center">
+                        <span class="far fa-user"></span>
+                        <br>
+
+            <label><b>Bemærkninger:*</b></label> <br>
+            <input type="text" placeholder="Mærke" th:field="*{notes}" required> <br><br>
+                    </div>
+
+            <button class="btn btn-secondary" type="submit">Tilføj skadesrapport</button>
+
+    </form>
+</div>
+
+</body>
+</html>

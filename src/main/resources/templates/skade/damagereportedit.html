@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Rediger skadesrapport</title>
+    <link rel="stylesheet" href="/create-user.css">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/dataregistration2.css">
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/opret-skade/">Tilføj skade</a></li>
+                <li><a href="/skadesrapporter">Se alle skaderapporter</a></li>
+                <li><a href="/biler"> Se alle biler</a></li>
+                <li><a href="/logout">Log ud</a></li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper">
+    <div class="content-under-header" id="all_buttons_in_body_createuser">
+        <div class="content-under-header">
+
+            <div class="text-center mt-4 name">
+               Skaderapport
+            </div>
+            <br>
+
+
+
+
+            <form action="#" th:action="@{/skadesrapport/{damageReportId}(damageReportId=${damageReport.id})}" th:object="${damageReport}"  method="post">
+
+                <div class="row m-2">
+                    <label class="col-6">Id i systemet</label> <br>
+                    <input class="col-6" type="text" th:placeholder="${damageReport.id}" th:field="*{id}" required readonly> <br><br>
+                </div>
+
+                <div class="row m-2">
+                    <label class="col-6">Bil id for rapporten</label>
+                    <input class="col-6" type="text" th:placeholder="${damageReport.carId}" th:field="*{carId}" required> <br><br>
+                </div>
+
+                <div class="row m-2">
+                    <label class="col-6">Medarbejder id</label><br>
+                    <input class="col-6" type="text" th:placeholder="${damageReport.technicianId}" th:field="*{technicianId}" required> <br><br>
+                </div>
+
+                <div class="row m-2">
+                    <label class="col-6">Bemærkninger</label><br>
+                    <input class="col-6" type="text" th:placeholder="${damageReport.notes}" th:field="*{notes}" required> <br><br>
+                </div>
+
+                <div class="row m-2">
+                    <div class="col-6">
+                        <button class="btn btn-secondary" type="submit">Gem ændringer</button>
+                    </div>
+                </div>
+                <br>
+            </form>
+
+            <div class="row m-2">
+                <div class="col-6">
+                    <a th:href="@{/skadesrapport/{damageReportId}/slet(damageReportId=${damageReport.id})}">
+                        <button class="btn btn-secondary">Slet</button>
+                    </a>
+                </div>
+                <br>
+                <div class="col-6">
+                    <a th:href="@{/opret-skade/{damageReportId}/(damageReportId=${damageReportId})}">
+                        <button class="btn btn-secondary">Tilføj skade</button>
+                    </a>
+                </div>
+                <br>
+
+            </div>
+
+        </div>
+        <br>
+        <div class="wrapper">
+                    <div class="text-center mt-4 name">
+                        Skader
+                    </div>
+                    <br>
+
+
+
+            <div class="row m-2" style="padding-left: 18px">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="table-secondary"> Note </th>
+                        <th scope="col" class="table-secondary"> Pris </th>
+                        <th scope="col" class="table-secondary"> Link </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${damageReportLines.empty}">
+                        <td colspan="3"> Der er ingen skader på den valgte skadesrapport</td>
+                    </tr>
+                    <tr th:each="damageReportLine : ${damageReportLines}">
+                        <td><span th:text="${damageReportLine.damageNotes}"> Note </span></td>
+                        <td><span th:text="${damageReportLine.price}"> Pris </span></td>
+
+                        <td>
+                            <a th:href="@{/skadesrapport/{damageReportId}/{lineNumber}(lineNumber = ${damageReportLine.lineNumber}, damageReportId = ${damageReportLine.damageReportId})}">
+                                <button class="btn btn-secondary">Rediger</button>
+                            </a>
+
+                            <a th:href="@{/skadesrapport/{damageReportId}/{lineNumber}/slet(lineNumber=${damageReportLine.lineNumber}, damageReportId = ${damageReportLine.damageReportId})}">
+                                <button class="btn btn-secondary">Slet</button>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>

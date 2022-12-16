@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Damage & Rectification</title>
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/dataregistration1.css">
+
+</head>
+
+<body>
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/opret-skadesrapport">Tilføj skaderapport</a></li>
+                <li><a href="/skadesrapporter">Se alle skaderapporter</a></li>
+                <li><a href="/biler"> Se alle biler</a></li>
+                <li><a href="/logout">Log ud</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<div class="social-buttons">
+    <a th:href="@{/opret-skadesrapport}">
+        <button class="neo-button" type="submit">Tilføj skaderapport <i class="fa"></i> </button>
+    </a>
+
+    <a th:href="@{/skadesrapporter}">
+        <button class="neo-button" type="submit">Se alle skaderapporter <i class="fa"></i> </button>
+    </a>
+
+    <a th:href="@{/biler}">
+        <button class="neo-button" type="submit">Se alle biler <i class="fa"></i> </button>
+    </a>
+
+
+</div>
+</body>
+</html>

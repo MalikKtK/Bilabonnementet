@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--@Made by Mark & Ebubekir-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Biler</title>
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/all-users.css">
+
+
+</head>
+<body>
+<div class="container">
+    <nav>
+        <div class="content">
+            <div class="logo"><a href="/">Bilabonnement</a></div>
+            <ul class="links">
+                <li><a href="/opret-lejekontrakt">Opret lejekontrakt</a></li>
+                <li><a href="/lejekontrakter">Se alle lejeaftaler</a></li>
+                <li><a href="/biler"> Se alle biler</a></li>
+                <li><a href="/opret-bil">Tilføj ny bil</a> </li>
+                <li><a href="/logout">Log ud</a></li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper">
+    <div class="content-under-header" id="all_buttons_in_body_createuser">
+        <div class="content-under-header">
+
+            <div class="text-center mt-4 name">
+                Biler:
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <br>
+
+        <table class="tabletester">
+            <thead>
+                <tr>
+                    <th scope="col" class="table-secondary"> Vognnummer</th>
+                    <th scope="col" class="table-secondary"> Mærke</th>
+                    <th scope="col" class="table-secondary"> Model</th>
+                    <th scope="col" class="table-secondary"> Status</th>
+                    <th scope="col" class="table-secondary"> Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${listOfCars.empty}">
+                    <td colspan="5"> Der er ingen biler i systemet</td>
+                </tr>
+            <tr class="mb-1" th:each="car : ${listOfCars}">
+                <div class="m-2">
+                    <td ><span th:text="${car.id}"> Vognnummer </span></td>
+                    <td ><span th:text="${car.make}"> Mærke </span></td>
+                    <td ><span th:text="${car.model}"> Model </span></td>
+                    <td >
+                        <span th:if="${car.status.toString() == 'READY_TO_BE_RENTED'}"> Klar til udlejning </span>
+                        <span th:if="${car.status.toString() == 'READY_FOR_DELIVERY'}"> Klar til levering </span>
+                        <span th:if="${car.status.toString() == 'RENTED'}"> Udlejet </span>
+                        <span th:if="${car.status.toString() == 'BACK_FROM_BEING_RENTED'}"> Tilbage fra udlejning </span>
+                        <span th:if="${car.status.toString() == 'READY_FOR_SALE'}"> Klar til salg </span>
+                    </td>
+                    <td>
+                        <a th:href="@{/bil/{carId}(carId=${car.id})}">
+                            <div class="m-2">
+                              <button class="btn btn-secondary h-90" >Rediger</button>
+                            </div>
+                        </a>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+        </div></div></div>
+
+</body>
+</html>
