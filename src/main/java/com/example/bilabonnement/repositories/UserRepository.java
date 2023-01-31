@@ -33,6 +33,10 @@ public class UserRepository {
         return getUserByUserName(user.getUsername());
     }
 
+    public User create (User user){
+
+    }
+
     public boolean deleteById(int id) {
         Connection conn = DatabaseConnectionManager.getConnection();
         try {
